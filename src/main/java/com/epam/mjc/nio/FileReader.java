@@ -10,19 +10,18 @@ public class FileReader {
     public Profile getDataFromFile(File file) {
         String name;
         String email;
+        StringBuilder sb = new StringBuilder();
         int age;
         long phone;
-        String ress = "";
         try (FileInputStream fis = new FileInputStream(new File(file.getAbsolutePath()))) {
             byte[] bytes = new byte[8192];
             while (fis.read(bytes) != -1)
-                ress += new String(bytes, StandardCharsets.UTF_8);
-
+                sb.append(new String(bytes, StandardCharsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        String[] arrayString = ress.split("\n");
+        String result_string = sb.toString();
+        String[] arrayString = result_string.split("\n");
         String[] arrOfStr = arrayString[0].split(":");
         arrOfStr[1] = arrOfStr[1].trim();
         name = arrOfStr[1];
@@ -37,5 +36,7 @@ public class FileReader {
         phone = Long.parseLong(arrOfStr[1]);
 
         return new Profile(name, age, email, phone);
+
+
     }
 }

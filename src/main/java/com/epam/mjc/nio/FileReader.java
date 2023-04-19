@@ -20,8 +20,8 @@ public class FileReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String result_string = sb.toString();
-        String[] arrayString = result_string.split("\n");
+        String resultString = sb.toString();
+        String[] arrayString = resultString.split("\n");
         String[] arrOfStr = arrayString[0].split(":");
         arrOfStr[1] = arrOfStr[1].trim();
         name = arrOfStr[1];
